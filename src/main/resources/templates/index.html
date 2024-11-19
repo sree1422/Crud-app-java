@@ -1,0 +1,32 @@
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+	<h2>List of Products</h2>
+	<a th:href="@{/addProduct}">Add Product</a>
+	<table border="1">
+		<thead>
+			<th>S.No</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th colspan="2">Action</th>
+		</thead>
+		<tbody>
+			<tr th:each="item,iStat :${products}">
+				<td th:text="${iStat.index+1}"></td>
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.price}"></td>
+				<td><a th:href="@{/editProduct/{id}(id=${item.id})}">Edit</a></td>
+				<td><a th:href="@{/deleteProduct/{id}(id=${item.id})}">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<p th:if="${products.empty}">
+		<td colspan="3">No Products Available</td>
+	</p>
+</body>
+
+</html>
